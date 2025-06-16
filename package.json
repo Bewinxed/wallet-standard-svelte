@@ -1,6 +1,6 @@
 {
 	"name": "wallet-standard-svelte",
-	"version": "1.0.1",
+	"version": "1.0.2",
 	"description": "Svelte 5 port of @wallet-standard/react",
 	"author": "Omar Al Matar",
 	"license": "MIT",
@@ -38,6 +38,7 @@
 		"svelte": "^5.0.0"
 	},
 	"dependencies": {
+		"@solana/wallet-standard-features": "^1.3.0",
 		"@wallet-standard/app": "^1.0.3",
 		"@wallet-standard/base": "^1.0.3",
 		"@wallet-standard/core": "^1.0.3",
