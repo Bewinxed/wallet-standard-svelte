@@ -1,0 +1,19 @@
+# wallet-standard-svelte
+
+> Svelte 5 port of @wallet-standard/react for reactive blockchain wallet integration
+
+A TypeScript library that enables Svelte applications to integrate with blockchain wallets using the Wallet Standard specification. It provides reactive state management through Svelte 5's runes and maintains API compatibility with the React version.
+
+## Core Implementation
+
+- [src/lib/wallets.svelte.ts](src/lib/wallets.svelte.ts): Main wallet store implementations and connection management
+- [src/lib/index.ts](src/lib/index.ts): Public API exports
+
+## Package Configuration
+
+- [package.json](package.json): Dependencies and build configuration
+- [README.md](README.md): Usage documentation
+
+## Example Usage
+
+- [src/routes/+page.svelte](src/routes/+page.svelte): Demo implementation
