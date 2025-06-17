@@ -3,7 +3,7 @@ import type { Wallet } from '@wallet-standard/base';
 import { StandardConnect, StandardDisconnect, StandardEvents } from '@wallet-standard/features';
 import type { StandardConnectFeature, StandardDisconnectFeature, StandardEventsFeature } from '@wallet-standard/features';
 import type { UiWallet, UiWalletAccount } from '@wallet-standard/ui';
-import { getWalletFeature } from '@wallet-standard/ui';
+import { getWalletFeature } from './getWalletFeature.js';
 import {
 	getOrCreateUiWalletForStandardWallet_DO_NOT_USE_OR_YOU_WILL_BE_FIRED,
 	getOrCreateUiWalletAccountForStandardWalletAccount_DO_NOT_USE_OR_YOU_WILL_BE_FIRED,
@@ -13,6 +13,9 @@ import { getContext, setContext } from 'svelte';
 
 // Re-export UI types for compatibility with React version
 export * from '@wallet-standard/ui';
+
+// Export our typed getWalletFeature
+export { getWalletFeature } from './getWalletFeature.js';
 
 // Track connection promises to prevent duplicate connections
 const connectionPromises = new WeakMap<Wallet, Promise<any>>();
@@ -216,7 +219,7 @@ export class UiWalletConnect {
 		const freshUiWallet = getOrCreateUiWalletForStandardWallet_DO_NOT_USE_OR_YOU_WILL_BE_FIRED(matchingWallet);
 		
 		const wallet = getWalletForHandle_DO_NOT_USE_OR_YOU_WILL_BE_FIRED(freshUiWallet);
-		const connectFeature = getWalletFeature(freshUiWallet, StandardConnect) as StandardConnectFeature[typeof StandardConnect];
+		const connectFeature = getWalletFeature(freshUiWallet, StandardConnect);
 
 		this.connectionPromise = connectFeature.connect(input)
 			.then(({ accounts }) => {
@@ -271,7 +274,7 @@ export class UiWalletDisconnect {
 		// Create a fresh UiWallet that will have proper handles
 		const freshUiWallet = getOrCreateUiWalletForStandardWallet_DO_NOT_USE_OR_YOU_WILL_BE_FIRED(matchingWallet);
 		
-		const disconnectFeature = getWalletFeature(freshUiWallet, StandardDisconnect) as StandardDisconnectFeature[typeof StandardDisconnect];
+		const disconnectFeature = getWalletFeature(freshUiWallet, StandardDisconnect);
 
 		this.disconnectionPromise = disconnectFeature.disconnect()
 			.catch(error => {
